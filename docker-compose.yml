@@ -1,0 +1,17 @@
+services:
+  parser:
+    build: .
+    container_name: iphone_parser
+    restart: unless-stopped
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:7-alpine
+    container_name: iphone_parser_redis
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+
+volumes:
+  redis_data:
